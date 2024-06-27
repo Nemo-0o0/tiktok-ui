@@ -10,10 +10,12 @@ import {
     faSignIn,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-
-import Button from '~/components/Button';
+import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import routesConfig from '~/config/routes';
+
+import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Menu from '~/components/Popper/Menu';
@@ -95,7 +97,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="TikTok" />
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="TikTok" />
+                </Link>
 
                 {/* Block Code Search */}
                 <Search />
@@ -128,7 +132,7 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <Image className={cx('user-avatar')} src={images.image} alt="HuyenVi" fallback="" />
+                            <Image className={cx('user-avatar')} src={images.image} alt="Huyen Vi" />
                         ) : (
                             <button className={cx('more-btn')}>
                                 <FontAwesomeIcon icon={faEllipsisVertical} />
